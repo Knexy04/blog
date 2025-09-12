@@ -3,16 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
 
-# Устанавливаем права для GitHub Actions
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Разрешаем только один деплой за раз
 concurrency:
   group: "pages"
   cancel-in-progress: false
