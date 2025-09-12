@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  react-blog:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    container_name: react-blog-app
+    networks:
+      - blog-network
+
+  # Опционально: можно добавить базу данных
+  # postgres:
+  #   image: postgres:15-alpine
+  #   environment:
+  #     POSTGRES_DB: react_blog
+  #     POSTGRES_USER: blog_user
+  #     POSTGRES_PASSWORD: blog_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - blog-network
+
+  # Опционально: можно добавить Redis для кэширования
+  # redis:
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - blog-network
+
+networks:
+  blog-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
