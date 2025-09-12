@@ -20,6 +20,9 @@
 2. **Включите GitHub Pages в настройках репозитория:**
    - Перейдите в Settings → Pages
    - В разделе "Source" выберите "GitHub Actions"
+   - В разделе "Actions" → "General" убедитесь, что включены:
+     - "Allow all actions and reusable workflows"
+     - "Allow GitHub Actions to create and approve pull requests"
 
 3. **GitHub Actions автоматически задеплоит приложение** при каждом push в main ветку
 
@@ -50,3 +53,15 @@ npm run deploy
 ### Проблема с GitHub Actions
 - Убедитесь, что в репозитории включены GitHub Actions
 - Проверьте, что в Settings → Actions → General включен доступ к Actions
+- Если возникает ошибка "Permission denied", проверьте:
+  - Settings → Actions → General → "Allow all actions and reusable workflows"
+  - Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests"
+  - Settings → Pages → Source должен быть "GitHub Actions"
+
+### Проблема с правами доступа (403 ошибка)
+Если получаете ошибку "Permission to [repo] denied to github-actions[bot]":
+1. Перейдите в Settings → Actions → General
+2. Включите "Allow all actions and reusable workflows"
+3. Включите "Allow GitHub Actions to create and approve pull requests"
+4. В Settings → Pages выберите "GitHub Actions" как источник
+5. Перезапустите workflow в Actions → Deploy to GitHub Pages → Re-run jobs
