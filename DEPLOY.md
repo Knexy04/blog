@@ -23,6 +23,7 @@
    - В разделе "Actions" → "General" убедитесь, что включены:
      - "Allow all actions and reusable workflows"
      - "Allow GitHub Actions to create and approve pull requests"
+   - В разделе "Environments" создайте environment с именем "github-pages" (если не существует)
 
 3. **GitHub Actions автоматически задеплоит приложение** при каждом push в main ветку
 
@@ -65,3 +66,16 @@ npm run deploy
 3. Включите "Allow GitHub Actions to create and approve pull requests"
 4. В Settings → Pages выберите "GitHub Actions" как источник
 5. Перезапустите workflow в Actions → Deploy to GitHub Pages → Re-run jobs
+
+### Проблема с environment (Missing environment)
+Если получаете ошибку "Missing environment":
+1. Перейдите в Settings → Environments
+2. Создайте новый environment с именем "github-pages"
+3. В настройках environment включите "Required reviewers" (опционально)
+4. Перезапустите workflow
+
+### Проблема с деплоем Pages
+Если деплой не запускается:
+1. Убедитесь, что в Settings → Pages выбран "GitHub Actions"
+2. Проверьте, что environment "github-pages" существует
+3. Убедитесь, что workflow файл находится в `.github/workflows/`
