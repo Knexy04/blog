@@ -1,78 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Blog.css';
+import { posts as allPosts } from './postsData';
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
-  const posts = [
-    {
-      id: 1,
-      title: 'Добро пожаловать в React Blog',
-      excerpt: 'Это современный блог, созданный с использованием React и современных веб-технологий.',
-      content: 'Полное содержание статьи...',
-      image: '/react.webp',
-      date: '2024-01-15',
-      author: 'Администратор',
-      category: 'Общее',
-      tags: ['React', 'JavaScript', 'Web']
-    },
-    {
-      id: 2,
-      title: 'Современный дизайн и UX',
-      excerpt: 'Мы создали красивый и удобный интерфейс, который понравится каждому пользователю.',
-      content: 'Полное содержание статьи...',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjNzY0YmEyIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk1vZGVybiBEZXNpZ248L3RleHQ+Cjwvc3ZnPgo=',
-      date: '2024-01-14',
-      author: 'Дизайнер',
-      category: 'Дизайн',
-      tags: ['UI', 'UX', 'Design']
-    },
-    {
-      id: 3,
-      title: 'Адаптивная верстка',
-      excerpt: 'Наш сайт отлично выглядит на всех устройствах - от мобильных до десктопов.',
-      content: 'Полное содержание статьи...',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjMDZiNmQ0Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlJlc3BvbnNpdmU8L3RleHQ+Cjwvc3ZnPgo=',
-      date: '2024-01-13',
-      author: 'Разработчик',
-      category: 'Разработка',
-      tags: ['CSS', 'Responsive', 'Mobile']
-    },
-    {
-      id: 4,
-      title: 'JavaScript ES6+ возможности',
-      excerpt: 'Изучаем современные возможности JavaScript и как их использовать в React приложениях.',
-      content: 'Полное содержание статьи...',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjZjU5ZTBiIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkphdmFTY3JpcHQ8L3RleHQ+Cjwvc3ZnPgo=',
-      date: '2024-01-12',
-      author: 'Разработчик',
-      category: 'Разработка',
-      tags: ['JavaScript', 'ES6', 'React']
-    },
-    {
-      id: 5,
-      title: 'CSS Grid и Flexbox',
-      excerpt: 'Современные методы верстки с использованием CSS Grid и Flexbox для создания адаптивных макетов.',
-      content: 'Полное содержание статьи...',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjMTBiOTgxIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNTUyBHcmlkPC90ZXh0Pgo8L3N2Zz4K',
-      date: '2024-01-11',
-      author: 'Дизайнер',
-      category: 'Дизайн',
-      tags: ['CSS', 'Grid', 'Flexbox']
-    },
-    {
-      id: 6,
-      title: 'Оптимизация производительности',
-      excerpt: 'Как оптимизировать React приложения для лучшей производительности и пользовательского опыта.',
-      content: 'Полное содержание статьи...',
-      image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgdmlld0JveD0iMCAwIDQwMCAyNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjUwIiBmaWxsPSIjZWY0NDQ0Ii8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTI1IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlBlcmZvcm1hbmNlPC90ZXh0Pgo8L3N2Zz4K',
-      date: '2024-01-10',
-      author: 'Разработчик',
-      category: 'Разработка',
-      tags: ['Performance', 'Optimization', 'React']
-    }
-  ];
+  const posts = allPosts;
 
   const filteredPosts = posts.filter(post =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

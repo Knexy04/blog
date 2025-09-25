@@ -7,8 +7,8 @@ const Footer = () => {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>React Blog</h3>
-            <p>Современный блог на React с красивым дизайном и удобным интерфейсом.</p>
+            <h3>Everyday Journal</h3>
+            <p>Практичные статьи о путешествиях, доме, еде и привычках — без лишней суеты.</p>
           </div>
           
           <div className="footer-section">
@@ -23,13 +23,13 @@ const Footer = () => {
           
           <div className="footer-section">
             <h4>Контакты</h4>
-            <p>Email: info@reactblog.com</p>
-            <p>Телефон: +7 (999) 123-45-67</p>
+            <p>Email: hello@everyday.journal</p>
+            <p>Telegram: @everyday_journal</p>
           </div>
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2024 React Blog. Все права защищены.</p>
+          <p>&copy; 2024–2025 Everyday Journal. Все права защищены.</p>
         </div>
       </div>
     </footer>

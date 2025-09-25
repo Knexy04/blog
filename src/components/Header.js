@@ -19,13 +19,13 @@ const Header = () => {
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
-            <h1>React Blog</h1>
+            <h1>Everyday Journal</h1>
           </Link>
           
           <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
             <Link to="/" className="nav-link">Главная</Link>
             <Link to="/blog" className="nav-link">Блог</Link>
-            <Link to="/about" className="nav-link">О нас</Link>
+            <Link to="/about" className="nav-link">О блоге</Link>
             <Link to="/contact" className="nav-link">Контакты</Link>
             
             {user ? (
