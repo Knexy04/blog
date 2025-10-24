@@ -18,6 +18,17 @@ function trySberAnalytics(payload) {
   } catch (_) {}
 }
 
+function tryYandexMetrikaReachGoals(stage, payload) {
+  try {
+    if (typeof window !== 'undefined' && typeof window.ym === 'function') {
+      const COUNTER_ID = 104609839;
+      window.ym(COUNTER_ID, 'params', payload);
+      window.ym(COUNTER_ID, 'reachGoal', 'auth');
+      window.ym(COUNTER_ID, 'reachGoal', `auth_${stage}`);
+    }
+  } catch (_) {}
+}
+
 function tryTopMailReachGoal(stage) {
   try {
     if (typeof window !== 'undefined' && Array.isArray(window._tmr)) {

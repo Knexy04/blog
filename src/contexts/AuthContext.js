@@ -29,10 +29,12 @@ export const AuthProvider = ({ children }) => {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Простая проверка (в реальном приложении это будет API)
-      if (email === 'admin@example.com' && password === 'password') {
+      const normalizedEmail = (email || '').trim().toLowerCase();
+      const normalizedPassword = (password || '').trim();
+      if (normalizedEmail === 'admin@example.com' && normalizedPassword === 'password') {
         const userData = {
           id: 1,
-          email: email,
+          email: normalizedEmail,
           name: 'Администратор',
           avatar: 'https://via.placeholder.com/40'
         };
